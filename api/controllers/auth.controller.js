@@ -7,7 +7,15 @@ import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res, next) => {
   try {
-    const role = await Role.find({ role: "User" });
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
+      return next(CreateError(403, "Email already exists"));
+    }
+    const userRole = await Role.findOne({ role: "User" });
+
+    if (!userRole) {
+      return res.status(500).send("User role not found");
+    }
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -17,7 +25,7 @@ export const registerUser = async (req, res, next) => {
       userName: req.body.userName,
       email: req.body.email,
       password: hashPassword,
-      roles: role,
+      roles: userRole,
     });
     await newUser.save();
     return next(CreateSuccess(200, "User Registered Successfully"));
@@ -71,7 +79,7 @@ export const registerAdmin = async (req, res, next) => {
 
     const newUser = new User({
       firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      lastName: req.body.lastName, 
       userName: req.body.userName,
       email: req.body.email,
       password: hashPassword,
@@ -84,3 +92,4 @@ export const registerAdmin = async (req, res, next) => {
     return res.status(500).send("Internal server Error!");
   }
 };
+ 

@@ -39,7 +39,7 @@ const UserSchema = mongoose.Schema(
       required: true,
       ref: "Role",
     },
-  },
+  }, 
   {
     timestamps: true,
   }

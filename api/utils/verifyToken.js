@@ -25,10 +25,11 @@ export const verifyUser = (req, res, next) => {
 
 export const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.isAdmin) {
+    if (req.user && req.user.isAdmin) {
       next();
     } else {
       return next(CreateError(403, "Not Authorised"));
     }
   });
 };
+
