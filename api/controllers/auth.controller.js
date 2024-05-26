@@ -79,7 +79,7 @@ export const registerAdmin = async (req, res, next) => {
 
     const newUser = new User({
       firstName: req.body.firstName,
-      lastName: req.body.lastName, 
+      lastName: req.body.lastName,
       userName: req.body.userName,
       email: req.body.email,
       password: hashPassword,
@@ -92,4 +92,3 @@ export const registerAdmin = async (req, res, next) => {
     return res.status(500).send("Internal server Error!");
   }
 };
- 

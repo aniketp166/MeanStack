@@ -5,4 +5,14 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
-/*# sourceMappingURL=styles.css.map */
+
+
+:root {
+  --blueLight: #5271ff;
+  --red: #d74749;
+  --grayDark: #2c2c2c;
+  --grayLight: #dddddd;
+  --blueDark: #004AAD;
+  --green: #03D0A0;
+  --yellow: #FFF9B0;
+}
