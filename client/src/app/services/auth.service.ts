@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { apiUrls } from '../validators/api.urls';
+import { apiUrls } from '../api.urls';
 @Injectable({
   providedIn: 'root',
 })
